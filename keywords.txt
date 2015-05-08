@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map For Clouduino Lib
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Clouduino KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+connect     KEYWORD2
+connected   KEYWORD2
+disconnect  KEYWORD2
+send        KEYWORD2
+monitor     KEYWORD2
+onData      KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
