@@ -10,6 +10,11 @@
 #include <Clouduino.h>
 
 bool Clouduino::connect(char *theUUID) {
+  Ethernet.begin(mac);
+  delay(1000);
+  Serial.print("IP of Ethernet Shield = ");
+  Serial.println(Ethernet.localIP());
+
   if (tcpClient.connect(serverUrl, tcpPort)) {
     // Send the UUID to the TCP server
     tcpClient.print(theUUID);  
@@ -38,23 +43,18 @@ void Clouduino::disconnect() {
   tcpClient.stop();
 }
 
-void Clouduino::onData(DataArrivedDelegate newdataArrivedDelegate) {
+void Clouduino::onMessage(DataArrivedDelegate newdataArrivedDelegate) {
   dataArrivedDelegate = newdataArrivedDelegate;
-}
 
-void Clouduino::monitor() {
   if (!tcpClient.connected()) {
     if (!tcpClient.connect(serverUrl, tcpPort)) return;
   }
 
   while (tcpClient.available()) {
     char incomingData = tcpClient.read();
-
-    if (dataArrivedDelegate != NULL) {
-      // Trigger
-      dataArrivedDelegate(*this, incomingData);
-    }
-  }
+    // trigger
+    dataArrivedDelegate(*this, incomingData);
+  }  
 }
 
 void Clouduino::send(char *eventName, char *data) {
@@ -79,5 +79,12 @@ void Clouduino::send(char *eventName, char *data) {
     httpClient.println();
   } else {
     Serial.print("Cannot connect to Clouduino HTTP server");
+  }
+}
+
+void Clouduino::setMacAddress(byte mac_address[]) {
+  for (int i = 0; i < 6; ++i)
+  {
+    mac[i] = mac_address[i];
   }
 }

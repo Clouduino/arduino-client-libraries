@@ -22,17 +22,27 @@ class Clouduino
     bool connected();
     void disconnect();
     void send(char *eventName, char *data);
-    void monitor();
-    void onData(DataArrivedDelegate dataArrivedDelegate);
+    void onMessage(DataArrivedDelegate dataArrivedDelegate);
+    void setMacAddress(byte macAddress[]);
   private:
     char *UUID;
     EthernetClient httpClient;
     EthernetClient tcpClient;
     DataArrivedDelegate dataArrivedDelegate;
+    /*  
+    *   Default MAC address for Ethernet shield or Arduino.
+    *   If you are using multiple Arduino devices with an Ethernet shield in your network
+    *   then you have to set this value. Otherwise you can have some issues with your DNS server.
+    *   
+    *   You could use the setMacAddress() method for this.
+    */
+    byte mac[6] = {
+      0x90, 0xA2, 0xDA, 0x00, 0x6C, 0xFE
+    };
   protected:
     int httpPort = 3000;
     int tcpPort = 1337;
-    char *serverUrl = "192.168.178.21";
+    char *serverUrl = "service.clouduino.nl";
 };
 
 #endif

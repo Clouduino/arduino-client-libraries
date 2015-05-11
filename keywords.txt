@@ -12,12 +12,12 @@ Clouduino KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-connect     KEYWORD2
-connected   KEYWORD2
-disconnect  KEYWORD2
-send        KEYWORD2
-monitor     KEYWORD2
-onData      KEYWORD2
+connect 			KEYWORD2
+connected 		KEYWORD2
+disconnect 		KEYWORD2
+send 					KEYWORD2
+onMessage 		KEYWORD2
+setMacAddress	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
