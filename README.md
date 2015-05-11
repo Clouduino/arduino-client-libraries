@@ -17,14 +17,10 @@ Restart the Arduino IDE application. That's it!
 ## How to use
 Use the following code to start with Clouduino
 
-```
+```c++
 /***
-    Clouduino.io - Alpha
+    Clouduino.io - Ethernet Library
     Arduino Cloud Service, build for fun
-
-    Copyright (C) 2015 Rhinofly
-
-    You will need to adjust the UUID and MAC address below.
 ***/
 
 #include "Clouduino.h"
@@ -32,7 +28,7 @@ Use the following code to start with Clouduino
 #include "SPI.h"
 Clouduino client;
 
-// Enter your Arduino UUID created in the Clouduino website.
+// Enter your own generated Arduino UUID from the Clouduino website.
 char *UUID = "f889db47cb0152de057fe16e09996d4a";
 
 void setup() {
@@ -63,4 +59,6 @@ void dataArrived(Clouduino client, char data) {
 To connect the library to your local node server, you will need to adjust your hostname / ip-address
 > File: `Clouduino.h`, linenumber: `45`
 
-> char *_hostname = ```"192.168.124.45"```;
+```c++
+char *_hostname = "192.168.124.45";
+```
